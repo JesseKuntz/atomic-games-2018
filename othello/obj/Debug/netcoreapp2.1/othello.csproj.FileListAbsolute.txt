@@ -1,0 +1,14 @@
+/Users/jessekuntz/Downloads/othello/sdks/cs/othello/bin/Debug/netcoreapp2.1/othello.deps.json
+/Users/jessekuntz/Downloads/othello/sdks/cs/othello/bin/Debug/netcoreapp2.1/othello.runtimeconfig.json
+/Users/jessekuntz/Downloads/othello/sdks/cs/othello/bin/Debug/netcoreapp2.1/othello.runtimeconfig.dev.json
+/Users/jessekuntz/Downloads/othello/sdks/cs/othello/bin/Debug/netcoreapp2.1/othello.dll
+/Users/jessekuntz/Downloads/othello/sdks/cs/othello/bin/Debug/netcoreapp2.1/othello.pdb
+/Users/jessekuntz/Downloads/othello/sdks/cs/othello/bin/Debug/netcoreapp2.1/ai.dll
+/Users/jessekuntz/Downloads/othello/sdks/cs/othello/bin/Debug/netcoreapp2.1/ai.pdb
+/Users/jessekuntz/Downloads/othello/sdks/cs/othello/obj/Debug/netcoreapp2.1/othello.csprojAssemblyReference.cache
+/Users/jessekuntz/Downloads/othello/sdks/cs/othello/obj/Debug/netcoreapp2.1/othello.csproj.CoreCompileInputs.cache
+/Users/jessekuntz/Downloads/othello/sdks/cs/othello/obj/Debug/netcoreapp2.1/othello.AssemblyInfoInputs.cache
+/Users/jessekuntz/Downloads/othello/sdks/cs/othello/obj/Debug/netcoreapp2.1/othello.AssemblyInfo.cs
+/Users/jessekuntz/Downloads/othello/sdks/cs/othello/obj/Debug/netcoreapp2.1/othello.csproj.CopyComplete
+/Users/jessekuntz/Downloads/othello/sdks/cs/othello/obj/Debug/netcoreapp2.1/othello.dll
+/Users/jessekuntz/Downloads/othello/sdks/cs/othello/obj/Debug/netcoreapp2.1/othello.pdb

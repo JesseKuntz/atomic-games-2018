@@ -1,0 +1,9 @@
+/Users/jessekuntz/Downloads/othello/sdks/cs/ai/bin/Debug/netstandard2.0/ai.deps.json
+/Users/jessekuntz/Downloads/othello/sdks/cs/ai/bin/Debug/netstandard2.0/ai.dll
+/Users/jessekuntz/Downloads/othello/sdks/cs/ai/bin/Debug/netstandard2.0/ai.pdb
+/Users/jessekuntz/Downloads/othello/sdks/cs/ai/obj/Debug/netstandard2.0/ai.csprojAssemblyReference.cache
+/Users/jessekuntz/Downloads/othello/sdks/cs/ai/obj/Debug/netstandard2.0/ai.csproj.CoreCompileInputs.cache
+/Users/jessekuntz/Downloads/othello/sdks/cs/ai/obj/Debug/netstandard2.0/ai.AssemblyInfoInputs.cache
+/Users/jessekuntz/Downloads/othello/sdks/cs/ai/obj/Debug/netstandard2.0/ai.AssemblyInfo.cs
+/Users/jessekuntz/Downloads/othello/sdks/cs/ai/obj/Debug/netstandard2.0/ai.dll
+/Users/jessekuntz/Downloads/othello/sdks/cs/ai/obj/Debug/netstandard2.0/ai.pdb
