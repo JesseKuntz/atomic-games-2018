@@ -2,11 +2,15 @@
 {
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
+using System.Threading;
+
     public static class AI
     {
         // public static KeyValuePair<int, int> findOpenSpace(int direction) {
         //     if ()
         // }
+
         public static List<KeyValuePair<int, int>> listOfMoves(GameMessage gameMessage) {
             int otherPlayer;
             if (gameMessage.player == 1) otherPlayer = 2;
@@ -23,7 +27,7 @@ using System.Collections.Generic;
                             while(k >= 0 && gameMessage.board[k][j] == otherPlayer) {
                                 k--;
                             }
-                            if (k >= 0 && gameMessage.board[k][j] == 0) moves.Add(new KeyValuePair<int, int>(k, j));
+                            if (k >= 0 && gameMessage.board[k][j] == 0 && !moves.Contains(new KeyValuePair<int, int>(k, j))) moves.Add(new KeyValuePair<int, int>(k, j));
                         }
 
                         // UP RIGHT
@@ -34,7 +38,7 @@ using System.Collections.Generic;
                                 k--;
                                 l++;
                             }
-                            if (k >= 0 && l <= 7 && gameMessage.board[k][l] == 0) moves.Add(new KeyValuePair<int, int>(k, l));
+                            if (k >= 0 && l <= 7 && gameMessage.board[k][l] == 0 && !moves.Contains(new KeyValuePair<int, int>(k, l))) moves.Add(new KeyValuePair<int, int>(k, l));
                         }
 
                         // RIGHT
@@ -43,7 +47,7 @@ using System.Collections.Generic;
                             while(l <= 7 && gameMessage.board[i][l] == otherPlayer) {
                                 l++;
                             }
-                            if (l <= 7 && gameMessage.board[i][l] == 0) moves.Add(new KeyValuePair<int, int>(i, l));
+                            if (l <= 7 && gameMessage.board[i][l] == 0 && !moves.Contains(new KeyValuePair<int, int>(i, l))) moves.Add(new KeyValuePair<int, int>(i, l));
                         }
 
                         // DOWN RIGHT
@@ -54,7 +58,7 @@ using System.Collections.Generic;
                                 k++;
                                 l++;
                             }
-                            if (k <= 7 && l <= 7 && gameMessage.board[k][l] == 0) moves.Add(new KeyValuePair<int, int>(k, l));
+                            if (k <= 7 && l <= 7 && gameMessage.board[k][l] == 0 && !moves.Contains(new KeyValuePair<int, int>(k, l))) moves.Add(new KeyValuePair<int, int>(k, l));
                         }
 
                         // DOWN
@@ -63,7 +67,7 @@ using System.Collections.Generic;
                             while(k <= 7 && gameMessage.board[k][j] == otherPlayer) {
                                 k++;
                             }
-                            if (k <= 7 && gameMessage.board[k][j] == 0) moves.Add(new KeyValuePair<int, int>(k, j));
+                            if (k <= 7 && gameMessage.board[k][j] == 0 && !moves.Contains(new KeyValuePair<int, int>(k, j))) moves.Add(new KeyValuePair<int, int>(k, j));
                         }
 
                         // DOWN LEFT
@@ -74,7 +78,7 @@ using System.Collections.Generic;
                                 k++;
                                 l--;
                             }
-                            if (k <= 7 && l >= 0 && gameMessage.board[k][l] == 0) moves.Add(new KeyValuePair<int, int>(k, l));
+                            if (k <= 7 && l >= 0 && gameMessage.board[k][l] == 0 && !moves.Contains(new KeyValuePair<int, int>(k, l))) moves.Add(new KeyValuePair<int, int>(k, l));
                         }
 
                         // LEFT
@@ -83,7 +87,7 @@ using System.Collections.Generic;
                             while(l >= 0 && gameMessage.board[i][l] == otherPlayer) {
                                 l--;
                             }
-                            if (l >= 0 && gameMessage.board[i][l] == 0) moves.Add(new KeyValuePair<int, int>(i, l));
+                            if (l >= 0 && gameMessage.board[i][l] == 0 && !moves.Contains(new KeyValuePair<int, int>(i, l))) moves.Add(new KeyValuePair<int, int>(i, l));
                         }
 
                         // UP LEFT
@@ -94,13 +98,58 @@ using System.Collections.Generic;
                                 k--;
                                 l--;
                             }
-                            if (k >= 0 && l >= 0 && gameMessage.board[k][l] == 0) moves.Add(new KeyValuePair<int, int>(k, l));
+                            if (k >= 0 && l >= 0 && gameMessage.board[k][l] == 0 && !moves.Contains(new KeyValuePair<int, int>(k, l))) moves.Add(new KeyValuePair<int, int>(k, l));
                         }
                     }
                 }
             }
             return moves;
         }
+
+        public static int numberOfChips(GameMessage gameMessage) {
+            int total = 0;
+            for (int i = 0; i < 8; i++) {
+                for (int j = 0; j < 8; j++) {
+                    if (gameMessage.board[i][j] == gameMessage.player) total++;
+                }
+            }
+            return total;
+        }
+
+        // public static int evaluate(GameMessage gameMessage) {
+        //     int score = 0;
+
+        //     score = numberOfChips(gameMessage);
+
+        //     return score;
+        // }
+
+        // public static int[][] makeMove(int[][] board, KeyValuePair<int, int> move) {
+
+        // }
+
+        // public static KeyValuePair<int, int> minimax(GameMessage gameMessage, Stopwatch w) {
+        //     // Check if we are out of time
+        //     if (w.ElapsedMilliseconds > gameMessage.maxTurnTime) {
+        //         // throw exception?
+        //     }
+
+        //     // Base Case (CHANGE)
+        //     if (true) {
+
+        //     }
+
+        //     List<KeyValuePair<int, int>> moves = listOfMoves(gameMessage);
+
+        //     if(gameMessage.player == 1) {
+        //         int maxScore = int.MinValue;
+        //         foreach (KeyValuePair<int, int> move in moves) {
+        //             GameMessage gmCopy = new GameMessage(gameMessage);
+        //             gmCopy.board = makeMove(gmCopy.board, )
+        //         }
+        //     }
+        // }
+
         public static int[] NextMove(GameMessage gameMessage)
         {
             var nextMove = new[] {1, 1};
