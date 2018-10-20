@@ -116,39 +116,40 @@ using System.Threading;
             return total;
         }
 
-        // public static int evaluate(GameMessage gameMessage) {
-        //     int score = 0;
+        public static int evaluate(GameMessage gameMessage) {
+            int score = 0;
 
-        //     score = numberOfChips(gameMessage);
+            score = numberOfChips(gameMessage);
 
-        //     return score;
-        // }
+            return score;
+        }
 
-        // public static int[][] makeMove(int[][] board, KeyValuePair<int, int> move) {
+        public static int[][] makeMove(int[][] board, KeyValuePair<int, int> move) {
 
-        // }
+        }
 
-        // public static KeyValuePair<int, int> minimax(GameMessage gameMessage, Stopwatch w) {
-        //     // Check if we are out of time
-        //     if (w.ElapsedMilliseconds > gameMessage.maxTurnTime) {
-        //         // throw exception?
-        //     }
+        public static MoveResult minimax(GameMessage gameMessage, Stopwatch w) {
+            // Check if we are out of time
+            if (w.ElapsedMilliseconds > gameMessage.maxTurnTime) {
+                // throw exception?
+            }
 
-        //     // Base Case (CHANGE)
-        //     if (true) {
+            // Base Case (CHANGE)
+            if (true) {
 
-        //     }
+            }
 
-        //     List<KeyValuePair<int, int>> moves = listOfMoves(gameMessage);
+            List<KeyValuePair<int, int>> moves = listOfMoves(gameMessage);
 
-        //     if(gameMessage.player == 1) {
-        //         int maxScore = int.MinValue;
-        //         foreach (KeyValuePair<int, int> move in moves) {
-        //             GameMessage gmCopy = new GameMessage(gameMessage);
-        //             gmCopy.board = makeMove(gmCopy.board, )
-        //         }
-        //     }
-        // }
+            if(gameMessage.player == 1) {
+                int maxScore = int.MinValue;
+                foreach (KeyValuePair<int, int> move in moves) {
+                    GameMessage gmCopy = new GameMessage(gameMessage);
+                    gmCopy.board = makeMove(gmCopy.board, move);
+
+                }
+            }
+        }
 
         public static int[] NextMove(GameMessage gameMessage)
         {
@@ -156,5 +157,24 @@ using System.Threading;
             return nextMove;
         }
 
+    }
+
+    class MoveResult
+    {
+        private KeyValuePair<int, int> bestMove;
+        private int bestScore;
+        private bool endGame;
+        public MoveResult(KeyValuePair<int, int> move, int score, bool end)
+        {
+            bestMove = move;
+            bestScore = score;
+            endGame = end;
+        }
+
+        public KeyValuePair<int, int> getMove() { return bestMove; }
+
+        public int getScore() { return bestScore; }
+
+        public bool isEndGame() { return endGame; }
     }
 }
