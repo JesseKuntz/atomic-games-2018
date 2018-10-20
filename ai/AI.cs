@@ -269,28 +269,63 @@ using System.Threading;
             return gameMessage.board;
         }
 
-        // public static MoveResult minimax(GameMessage gameMessage, Stopwatch w) {
-        //     // Check if we are out of time
-        //     if (w.ElapsedMilliseconds > gameMessage.maxTurnTime) {
-        //         // throw exception?
-        //     }
+        public static Boolean gameOver(GameMessage gameMessage) {
+            for(int i = 0; i < 8; i++ ) {
+                for(int j = 0; j < 8; j++) {
+                    if(gameMessage.board[i][j] == 0) {
+                        return false;
+                    }
+                }
+            }
+            return true;
+        }
 
-        //     // Base Case (CHANGE)
-        //     if (true) {
+        public static MoveResult minimax(GameMessage gameMessage, Stopwatch w, int d) {
+            // Check if we are out of time
+            if (w.ElapsedMilliseconds > gameMessage.maxTurnTime) {
+                // throw exception?
+            }
 
-        //     }
+            List<KeyValuePair<int, int>> moves = listOfMoves(gameMessage);
 
-        //     List<KeyValuePair<int, int>> moves = listOfMoves(gameMessage);
+            // Base Case
+            if (gameOver(gameMessage) || d == 0) {
+                return new MoveResult(moves[0], evaluate(gameMessage), gameOver(gameMessage));
+            }
 
-        //     if(gameMessage.player == 1) {
-        //         int maxScore = int.MinValue;
-        //         foreach (KeyValuePair<int, int> move in moves) {
-        //             GameMessage gmCopy = new GameMessage(gameMessage);
-        //             gmCopy.board = makeMove(gmCopy.board, move);
+            // Initialize trackers
+            KeyValuePair<int, int> bestMove = new KeyValuePair<int, int>();
+            int bestScore;
+            bool endGame = false;
 
-        //         }
-        //     }
-        // }
+            if(gameMessage.player == 1) {
+                bestScore = int.MinValue;
+                foreach (KeyValuePair<int, int> move in moves) {
+                    GameMessage gmCopy = new GameMessage(gameMessage);
+                    gmCopy.board = makeMove(gmCopy, move);
+                    MoveResult mr = minimax(gmCopy, w, d-1);
+                    if(mr.getScore() > bestScore) {
+                        bestScore = mr.getScore();
+                        bestMove = move;
+                        endGame = mr.isEndGame();
+                    }
+                }
+            }
+            else {
+                bestScore = int.MaxValue;
+                foreach (KeyValuePair<int, int> move in moves) {
+                    GameMessage gmCopy = new GameMessage(gameMessage);
+                    gmCopy.board = makeMove(gmCopy, move);
+                    MoveResult mr = minimax(gmCopy, w, d-1);
+                    if(mr.getScore() < bestScore) {
+                        bestScore = mr.getScore();
+                        bestMove = move;
+                        endGame = mr.isEndGame();
+                    }
+                }
+            }
+            return new MoveResult(bestMove, bestScore, endGame);
+        }
 
         public static int[] NextMove(GameMessage gameMessage)
         {
@@ -300,7 +335,7 @@ using System.Threading;
 
     }
 
-    class MoveResult
+    public class MoveResult
     {
         private KeyValuePair<int, int> bestMove;
         private int bestScore;
