@@ -7,10 +7,6 @@ using System.Threading;
 
     public static class AI
     {
-        // public static KeyValuePair<int, int> findOpenSpace(int direction) {
-        //     if ()
-        // }
-
         public static List<KeyValuePair<int, int>> listOfMoves(GameMessage gameMessage) {
             int otherPlayer;
             if (gameMessage.player == 1) otherPlayer = 2;
