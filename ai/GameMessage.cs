@@ -10,5 +10,11 @@ namespace ai
         //     player = gm.player;
         //     board = gm.board;
         // }
+
+        public GameMessage(int turnTime, int p, int[][] b) {
+            this.maxTurnTime = turnTime;
+            this.player = p;
+            this.board = b;
+        }
     }
 }

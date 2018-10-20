@@ -120,16 +120,52 @@ namespace test
             var objNewMakeMove = JsonConvert.DeserializeObject<GameMessage>(newMakeMoveBoard);
             int[][] newBoard = AI.makeMove(objMakeMove, new KeyValuePair<int, int>(3, 2));
 
+            // for (int i = 0; i < 8; i++) {
+            //     for (int j = 0; j < 8; j++) {
+            //        Console.Write(newBoard[i][j] + " ");
+            //     }
+            //     Console.Write("\n");
+            // }
+
             for (int i = 0; i < 8; i++) {
                 for (int j = 0; j < 8; j++) {
-                   Console.Write(newBoard[i][j] + " ");
+                    newBoard[i][j].Should().Be(objNewMakeMove.board[i][j]);
+                }
+            }
+
+            const string makeMoveBoard2 = @"{""board"":[[2,2,2,2,2,2,2,2],
+                                                        [2,1,1,1,1,1,1,2],
+                                                        [2,1,1,1,1,1,1,2],
+                                                        [2,1,1,0,1,1,1,2],
+                                                        [2,1,1,1,1,1,1,2],
+                                                        [2,1,1,1,1,1,1,2],
+                                                        [2,1,1,1,1,1,1,2],
+                                                        [2,2,2,2,2,2,2,2]],""maxTurnTime"":15000,""player"":2}";
+
+            var objMakeMove2 = JsonConvert.DeserializeObject<GameMessage>(makeMoveBoard2);
+
+            const string makeNewMoveBoard2 = @"{""board"":[[2,2,2,2,2,2,2,2],
+                                                           [2,2,1,2,1,2,1,2],
+                                                           [2,1,2,2,2,1,1,2],
+                                                           [2,2,2,2,2,2,2,2],
+                                                           [2,1,2,2,2,1,1,2],
+                                                           [2,2,1,2,1,2,1,2],
+                                                           [2,1,1,2,1,1,2,2],
+                                                           [2,2,2,2,2,2,2,2]],""maxTurnTime"":15000,""player"":2}";
+
+            var objNewMakeMove2 = JsonConvert.DeserializeObject<GameMessage>(makeNewMoveBoard2);
+            int[][] newBoard2 = AI.makeMove(objMakeMove2, new KeyValuePair<int, int>(3, 3));
+
+            for (int i = 0; i < 8; i++) {
+                for (int j = 0; j < 8; j++) {
+                   Console.Write(newBoard2[i][j] + " ");
                 }
                 Console.Write("\n");
             }
 
             for (int i = 0; i < 8; i++) {
                 for (int j = 0; j < 8; j++) {
-                    newBoard[i][j].Should().Be(objNewMakeMove.board[i][j]);
+                    newBoard2[i][j].Should().Be(objNewMakeMove2.board[i][j]);
                 }
             }
         }

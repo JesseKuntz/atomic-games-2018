@@ -204,7 +204,7 @@ using System.Threading;
                 }
                 if (k <= 7 && gameMessage.board[k][j] == gameMessage.player) {
                     k = i+1;
-                    while(k >= 7 && gameMessage.board[k][j] == otherPlayer) {
+                    while(k <= 7 && gameMessage.board[k][j] == otherPlayer) {
                         gameMessage.board[k][j] = gameMessage.player;
                         k++;
                     }
@@ -246,7 +246,7 @@ using System.Threading;
             }
 
             // LEFT UP
-            if (i-1 >= 0 && j-1 >= 0 && gameMessage.board[i+1][j-1] == otherPlayer) {
+            if (i-1 >= 0 && j-1 >= 0 && gameMessage.board[i-1][j-1] == otherPlayer) {
                 int k = i-2;
                 int l = j-2;
                 while(k >= 0 && l >= 0 && gameMessage.board[k][l] == otherPlayer) {
@@ -288,8 +288,10 @@ using System.Threading;
 
             List<KeyValuePair<int, int>> moves = listOfMoves(gameMessage);
 
+            //Console.WriteLine(moves.Count);
+
             // Base Case
-            if (gameOver(gameMessage) || d == 0) {
+            if ((gameOver(gameMessage) || d == 0) && moves.Count > 0) {
                 return new MoveResult(moves[0], evaluate(gameMessage), gameOver(gameMessage));
             }
 
@@ -301,7 +303,7 @@ using System.Threading;
             if(gameMessage.player == 1) {
                 bestScore = int.MinValue;
                 foreach (KeyValuePair<int, int> move in moves) {
-                    GameMessage gmCopy = new GameMessage(gameMessage);
+                    GameMessage gmCopy = new GameMessage(15000, 2, gameMessage.board);
                     gmCopy.board = makeMove(gmCopy, move);
                     MoveResult mr = minimax(gmCopy, w, d-1);
                     if(mr.getScore() > bestScore) {
@@ -314,7 +316,7 @@ using System.Threading;
             else {
                 bestScore = int.MaxValue;
                 foreach (KeyValuePair<int, int> move in moves) {
-                    GameMessage gmCopy = new GameMessage(gameMessage);
+                    GameMessage gmCopy = new GameMessage(15000, 1, gameMessage.board);
                     gmCopy.board = makeMove(gmCopy, move);
                     MoveResult mr = minimax(gmCopy, w, d-1);
                     if(mr.getScore() < bestScore) {
@@ -329,7 +331,10 @@ using System.Threading;
 
         public static int[] NextMove(GameMessage gameMessage)
         {
-            var nextMove = new[] {1, 1};
+            Stopwatch w = new Stopwatch();
+            w.Start();
+            MoveResult finalMove = minimax(gameMessage, w, 10);
+            var nextMove = new [] {finalMove.getMove().Key, finalMove.getMove().Value};
             return nextMove;
         }
 
