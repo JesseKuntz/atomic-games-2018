@@ -1,0 +1,17 @@
+/Users/jessekuntz/Downloads/othello/sdks/cs/test/bin/Debug/netcoreapp2.1/xunit.runner.visualstudio.dotnetcore.testadapter.dll
+/Users/jessekuntz/Downloads/othello/sdks/cs/test/bin/Debug/netcoreapp2.1/xunit.runner.reporters.netcoreapp10.dll
+/Users/jessekuntz/Downloads/othello/sdks/cs/test/bin/Debug/netcoreapp2.1/xunit.runner.utility.netcoreapp10.dll
+/Users/jessekuntz/Downloads/othello/sdks/cs/test/bin/Debug/netcoreapp2.1/test.deps.json
+/Users/jessekuntz/Downloads/othello/sdks/cs/test/bin/Debug/netcoreapp2.1/test.runtimeconfig.json
+/Users/jessekuntz/Downloads/othello/sdks/cs/test/bin/Debug/netcoreapp2.1/test.runtimeconfig.dev.json
+/Users/jessekuntz/Downloads/othello/sdks/cs/test/bin/Debug/netcoreapp2.1/test.dll
+/Users/jessekuntz/Downloads/othello/sdks/cs/test/bin/Debug/netcoreapp2.1/test.pdb
+/Users/jessekuntz/Downloads/othello/sdks/cs/test/bin/Debug/netcoreapp2.1/ai.dll
+/Users/jessekuntz/Downloads/othello/sdks/cs/test/bin/Debug/netcoreapp2.1/ai.pdb
+/Users/jessekuntz/Downloads/othello/sdks/cs/test/obj/Debug/netcoreapp2.1/test.csprojAssemblyReference.cache
+/Users/jessekuntz/Downloads/othello/sdks/cs/test/obj/Debug/netcoreapp2.1/test.csproj.CoreCompileInputs.cache
+/Users/jessekuntz/Downloads/othello/sdks/cs/test/obj/Debug/netcoreapp2.1/test.AssemblyInfoInputs.cache
+/Users/jessekuntz/Downloads/othello/sdks/cs/test/obj/Debug/netcoreapp2.1/test.AssemblyInfo.cs
+/Users/jessekuntz/Downloads/othello/sdks/cs/test/obj/Debug/netcoreapp2.1/test.csproj.CopyComplete
+/Users/jessekuntz/Downloads/othello/sdks/cs/test/obj/Debug/netcoreapp2.1/test.dll
+/Users/jessekuntz/Downloads/othello/sdks/cs/test/obj/Debug/netcoreapp2.1/test.pdb

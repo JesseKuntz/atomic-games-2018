@@ -120,175 +120,177 @@ using System.Threading;
             return score;
         }
 
-        public static int[][] makeMove(gameMessage, KeyValuePair<int, int> move) {
+        public static int[][] makeMove(GameMessage gameMessage, KeyValuePair<int, int> move) {
             int otherPlayer;
             if (gameMessage.player == 1) otherPlayer = 2;
             else otherPlayer = 1;
 
-            int i = KeyValuePair.Key;
-            int j = KeyValuePair.Value;
+            int i = move.Key;
+            int j = move.Value;
 
             // UP
-            if (i-1 >= 0 && board[i-1][j] == otherPlayer) {
+            if (i-1 >= 0 && gameMessage.board[i-1][j] == otherPlayer) {
                 int k = i-2;
-                while(k >= 0 && board[k][j] == otherPlayer) {
+                while(k >= 0 && gameMessage.board[k][j] == otherPlayer) {
                     k--;
                 }
-                if (k >= 0 && board[k][j] == gameMessage.player) {
-                    k = i-2;
-                    while(k >= 0 && board[k][j] == otherPlayer) {
+                if (k >= 0 && gameMessage.board[k][j] == gameMessage.player) {
+                    k = i-1;
+                    while(k >= 0 && gameMessage.board[k][j] == otherPlayer) {
+                        gameMessage.board[k][j] = gameMessage.player;
                         k--;
-                        board[k][j] = gameMessage.player;
                     }
                 };
             }
 
             // RIGHT UP
-            if (i-1 >= 0 && j+1 <= 7 && board[i-1][j+1] == otherPlayer) {
+            if (i-1 >= 0 && j+1 <= 7 && gameMessage.board[i-1][j+1] == otherPlayer) {
                 int k = i-2;
                 int l = j+2;
-                while(k >= 0 && l <= 7 && board[k][l] == otherPlayer) {
+                while(k >= 0 && l <= 7 && gameMessage.board[k][l] == otherPlayer) {
                     k--;
                     l++;
                 }
-                if (k >= 0  && l <= 7 && board[k][l] == gameMessage.player) {
-                    k = i-2;
-                    l = l+2;
-                    while(k >= 0 && l <= 7 board[k][l] == otherPlayer) {
+                if (k >= 0  && l <= 7 && gameMessage.board[k][l] == gameMessage.player) {
+                    k = i-1;
+                    l = j+1;
+                    while(k >= 0 && l <= 7 && gameMessage.board[k][l] == otherPlayer) {
+                        gameMessage.board[k][l] = gameMessage.player;
                         k--;
                         l++;
-                        board[k][l] = gameMessage.player;
                     }
                 };
             }
 
             // Right
-            if (j+1 >= 0 && board[i][j+1] == otherPlayer) {
+            if (j+1 <= 7 && gameMessage.board[i][j+1] == otherPlayer) {
                 int l = j+2;
-                while(l <= 7 && board[i][l] == otherPlayer) {
+                while(l <= 7 && gameMessage.board[i][l] == otherPlayer) {
                     l++;
                 }
-                if (l <= 7 && board[i][l] == gameMessage.player) {
-                    l = j+2;
-                    while(l <= 7 && board[i][l] == otherPlayer) {
+                if (l <= 7 && gameMessage.board[i][l] == gameMessage.player) {
+                    l = j+1;
+                    while(l <= 7 && gameMessage.board[i][l] == otherPlayer) {
+                        gameMessage.board[i][l] = gameMessage.player;
                         l++;
-                        board[i][l] = gameMessage.player;
                     }
                 };
             }
 
             // RIGHT DOWN
-            if (i+1 <= 7 > && j+1 <= 7 && board[i+1][j+1] == otherPlayer) {
+            if (i+1 <= 7 && j+1 <= 7 && gameMessage.board[i+1][j+1] == otherPlayer) {
                 int k = i+2;
                 int l = j+2;
-                while(k <= 7 && l <= 7 && board[k][l] == otherPlayer) {
+                while(k <= 7 && l <= 7 && gameMessage.board[k][l] == otherPlayer) {
                     k++;
                     l++;
                 }
-                if (k <= 7  && l <= 7 && board[k][l] == gameMessage.player) {
-                    k = i+2;
-                    l = l+2;
-                    while(k <= 7 && l <= 7 board[k][l] == otherPlayer) {
+                if (k <= 7  && l <= 7 && gameMessage.board[k][l] == gameMessage.player) {
+                    k = i+1;
+                    l = j+1;
+                    while(k <= 7 && l <= 7 && gameMessage.board[k][l] == otherPlayer) {
+                        gameMessage.board[k][l] = gameMessage.player;
                         k++;
                         l++;
-                        board[k][l] = gameMessage.player;
                     }
                 };
             }
 
             // DOWN
-            if (i+1 >= 0 && board[i+1][j] == otherPlayer) {
+            if (i+1 <= 7 && gameMessage.board[i+1][j] == otherPlayer) {
                 int k = i+2;
-                while(k <= 7 && board[k][j] == otherPlayer) {
+                while(k <= 7 && gameMessage.board[k][j] == otherPlayer) {
                     k++;
                 }
-                if (k <= 7 && board[k][j] == gameMessage.player) {
-                    k = i+2;
-                    while(k >= 7 && board[k][j] == otherPlayer) {
+                if (k <= 7 && gameMessage.board[k][j] == gameMessage.player) {
+                    k = i+1;
+                    while(k >= 7 && gameMessage.board[k][j] == otherPlayer) {
+                        gameMessage.board[k][j] = gameMessage.player;
                         k++;
-                        board[k][j] = gameMessage.player;
                     }
                 };
             }
 
             // LEFT DOWN
-            if (i+1 <= 7 > && j-1 >= 0 && board[i+1][j-1] == otherPlayer) {
+            if (i+1 <= 7 && j-1 >= 0 && gameMessage.board[i+1][j-1] == otherPlayer) {
                 int k = i+2;
                 int l = j-2;
-                while(k <= 7 && l >= 0 && board[k][l] == otherPlayer) {
+                while(k <= 7 && l >= 0 && gameMessage.board[k][l] == otherPlayer) {
                     k++;
                     l--;
                 }
-                if (k <= 7  && l >= 0 && board[k][l] == gameMessage.player) {
-                    k = i+2;
-                    l = l-2;
-                    while(k <= 7 && l >= 0 board[k][l] == otherPlayer) {
+                if (k <= 7  && l >= 0 && gameMessage.board[k][l] == gameMessage.player) {
+                    k = i+1;
+                    l = j-1;
+                    while(k <= 7 && l >= 0 && gameMessage.board[k][l] == otherPlayer) {
+                        gameMessage.board[k][l] = gameMessage.player;
                         k++;
                         l--;
-                        board[k][l] = gameMessage.player;
                     }
                 };
             }
 
             // LEFT
-            if (j-1 >= 0 && board[i][j-1] == otherPlayer) {
+            if (j-1 >= 0 && gameMessage.board[i][j-1] == otherPlayer) {
                 int l = j-2;
-                while(l >= 0 && board[i][l] == otherPlayer) {
+                while(l >= 0 && gameMessage.board[i][l] == otherPlayer) {
                     l--;
                 }
-                if (l >= 0 && board[i][l] == gameMessage.player) {
-                    l = j-2;
-                    while(l >= 0 && board[i][l] == otherPlayer) {
+                if (l >= 0 && gameMessage.board[i][l] == gameMessage.player) {
+                    l = j-1;
+                    while(l >= 0 && gameMessage.board[i][l] == otherPlayer) {
+                        gameMessage.board[i][l] = gameMessage.player;
                         l--;
-                        board[i][l] = gameMessage.player;
                     }
                 };
             }
 
             // LEFT UP
-            if (i-1 >= 0 > && j-1 >= 0 && board[i+1][j-1] == otherPlayer) {
+            if (i-1 >= 0 && j-1 >= 0 && gameMessage.board[i+1][j-1] == otherPlayer) {
                 int k = i-2;
                 int l = j-2;
-                while(k >= 0 && l >= 0 && board[k][l] == otherPlayer) {
+                while(k >= 0 && l >= 0 && gameMessage.board[k][l] == otherPlayer) {
                     k--;
                     l--;
                 }
-                if (k >= 0  && l >= 0 && board[k][l] == gameMessage.player) {
-                    k = i-2;
-                    l = l-2;
-                    while(k >= 0 && l >= 0 board[k][l] == otherPlayer) {
+                if (k >= 0  && l >= 0 && gameMessage.board[k][l] == gameMessage.player) {
+                    k = i-1;
+                    l = j-1;
+                    while(k >= 0 && l >= 0 && gameMessage.board[k][l] == otherPlayer) {
+                        gameMessage.board[k][l] = gameMessage.player;
                         k--;
                         l--;
-                        board[k][l] = gameMessage.player;
                     }
                 };
             }
 
-            return board
+            gameMessage.board[i][j] = gameMessage.player;
+
+            return gameMessage.board;
         }
 
-        public static MoveResult minimax(GameMessage gameMessage, Stopwatch w) {
-            // Check if we are out of time
-            if (w.ElapsedMilliseconds > gameMessage.maxTurnTime) {
-                // throw exception?
-            }
+        // public static MoveResult minimax(GameMessage gameMessage, Stopwatch w) {
+        //     // Check if we are out of time
+        //     if (w.ElapsedMilliseconds > gameMessage.maxTurnTime) {
+        //         // throw exception?
+        //     }
 
-            // Base Case (CHANGE)
-            if (true) {
+        //     // Base Case (CHANGE)
+        //     if (true) {
 
-            }
+        //     }
 
-            List<KeyValuePair<int, int>> moves = listOfMoves(gameMessage);
+        //     List<KeyValuePair<int, int>> moves = listOfMoves(gameMessage);
 
-            if(gameMessage.player == 1) {
-                int maxScore = int.MinValue;
-                foreach (KeyValuePair<int, int> move in moves) {
-                    GameMessage gmCopy = new GameMessage(gameMessage);
-                    gmCopy.board = makeMove(gmCopy.board, move);
+        //     if(gameMessage.player == 1) {
+        //         int maxScore = int.MinValue;
+        //         foreach (KeyValuePair<int, int> move in moves) {
+        //             GameMessage gmCopy = new GameMessage(gameMessage);
+        //             gmCopy.board = makeMove(gmCopy.board, move);
 
-                }
-            }
-        }
+        //         }
+        //     }
+        // }
 
         public static int[] NextMove(GameMessage gameMessage)
         {
