@@ -1,12 +1,43 @@
 ﻿using ai;
 using Newtonsoft.Json;
 using Xunit;
+using Xunit.Abstractions;
 using FluentAssertions;
+
+using System;
+using System.IO;
+using System.Diagnostics;
+using System.Collections.Generic;
 
 namespace test
 {
-    public class Test
+    public class MakeConsoleWork : IDisposable
     {
+        private readonly ITestOutputHelper _output;
+        private readonly TextWriter _originalOut;
+        private readonly TextWriter _textWriter;
+
+        public MakeConsoleWork(ITestOutputHelper output)
+        {
+            _output = output;
+            _originalOut = Console.Out;
+            _textWriter = new StringWriter();
+            Console.SetOut(_textWriter);
+        }
+
+        public void Dispose()
+        {
+            _output.WriteLine(_textWriter.ToString());
+            Console.SetOut(_originalOut);
+        }
+    }
+
+    public class Test : MakeConsoleWork
+    {
+        public Test(ITestOutputHelper output) : base(output)
+        {
+        }
+
         [Fact]
         public void Deserialize_Game_Message()
         {
@@ -20,6 +51,31 @@ namespace test
             obj.board[0][0].Should().Be(0);
             obj.board[3][3].Should().NotBe(0);
 
+            // Beginning setup
+            const string inputStart = @"{""board"":[[0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0],[0,0,0,1,2,0,0,0],[0,0,0,2,1,0,0,0],[0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0]],""maxTurnTime"":15000,""player"":2}";
+            var objStart = JsonConvert.DeserializeObject<GameMessage>(inputStart);
+
+            List<KeyValuePair<int, int>> listOfMoves = AI.listOfMoves(objStart);
+
+            listOfMoves.Count.Should().Be(4);
+
+            const string inputEarly = @"{""board"":[[0,0,0,0,0,0,0,0],
+                                                    [0,0,0,0,0,0,0,0],
+                                                    [0,0,1,1,0,0,0,0],
+                                                    [0,0,2,1,2,2,2,0],
+                                                    [0,0,2,2,1,0,0,0],
+                                                    [0,0,0,1,1,0,0,0],
+                                                    [0,0,0,0,0,0,0,0],
+                                                    [0,0,0,0,0,0,0,0]],""maxTurnTime"":15000,""player"":2}";
+            var objEarly = JsonConvert.DeserializeObject<GameMessage>(inputEarly);
+
+            listOfMoves = AI.listOfMoves(objEarly);
+
+            for(int i = 0; i < listOfMoves.Count; i++) {
+                Console.WriteLine(listOfMoves[i].Key.ToString() + ", " + listOfMoves[i].Value.ToString() + "\n");
+            }
+
+            listOfMoves.Count.Should().Be(9);
         }
         
     }
