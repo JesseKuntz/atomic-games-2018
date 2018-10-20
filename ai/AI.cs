@@ -263,6 +263,8 @@ using System.Threading;
                     }
                 };
             }
+
+            return board
         }
 
         public static MoveResult minimax(GameMessage gameMessage, Stopwatch w) {
